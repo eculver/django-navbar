@@ -1,0 +1,8 @@
+.DS_Store
+*.*~
+*.py[co]
+*.pid
+*.log
+*.swp
+*~
+.svn
