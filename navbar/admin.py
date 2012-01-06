@@ -3,14 +3,14 @@ from django import forms
 from navbar.models import NavBarEntry
 import re, urllib2
 
-url_re = re.compile(r'^(https?://([a-zA-Z0-9]+\.)+[a-zA-Z0-9]([:@][a-zA-Z0-9@%-_\.]){0,2})?/\S*$')
+url_re = re.compile(r'^(https?://([a-zA-Z0-9]+\.)+[a-zA-Z0-9]+([:@][a-zA-Z0-9@%-_\.]){0,2})?/\S*$')
 
 class NavBarEntryAdminForm(forms.ModelForm):
     class Meta:
         model = NavBarEntry
 
     def clean_url(self):
-        url = self.cleaned_data["url"]
+        url = self.cleaned_data["url"].strip()
         if not url_re.search(url):
             raise forms.ValidationError("A valid URL is required.")
         ## RED_FLAG: add signals based local check (from request object)
@@ -45,7 +45,7 @@ class NavBarEntryAdminForm(forms.ModelForm):
             try:
                 pids = []
                 while parent:
-                    parent = NavBarEntry.objects.get(pk=parent.id)                
+                    parent = NavBarEntry.objects.get(pk=parent.id)
                     if parent.id in pids:
                         raise forms.ValidationError(u"Creates a cyclical reference.")
                     elif parent.parent != None:

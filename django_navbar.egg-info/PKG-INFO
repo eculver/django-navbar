@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: django-navbar
-Version: 0.1.1rc1
+Version: 0.3.0
 Summary: Reusable django application managing navigation menues with permissions, auto selection and crumbs.
 Home-page: http://code.google.com/p/django-navbar/
 Author: Doug Napoleone

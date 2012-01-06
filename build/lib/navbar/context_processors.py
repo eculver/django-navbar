@@ -52,12 +52,7 @@ def _mark_selected(path, byurl):
                 if (val['path_type'] == 'N' or (val['path_type'] == 'E' and
                         path != val['url'])): clear.append(val)
                 val['selected'] = True
-                
-                # special case for root url in navbar
-                if path != '/' and val['url'] == '/': val['selected'] = False
-                
                 val = val['parent']
-                
     for ent in clear: ent['selected'] = False
 
 def navbar(request):
